@@ -111,6 +111,13 @@ public class SistemPenyewaanKamera {
                         125000,
                         true
                 );
+        daftarKamera[jumlahKamera++] =
+        new KameraCinema(
+                "K009",
+                "Sony FX3",
+                350000,
+                "4K"
+        );
     }
 
     static void tambahKamera() {
@@ -138,6 +145,7 @@ public class SistemPenyewaanKamera {
         System.out.println("1. DSLR");
         System.out.println("2. Mirrorless");
         System.out.println("3. Action Camera");
+        System.out.println("4. Cinema Camera");
         System.out.print("Pilihan: ");
 
         int tipe = input.nextInt();
@@ -191,7 +199,22 @@ public class SistemPenyewaanKamera {
                 );
 
                 break;
+                
+            case 4:
+                System.out.print("Resolusi video : ");
+                String resolusiVideo = input.nextLine();
 
+                kameraBaru = new KameraCinema(
+                        kode,
+                        merk,
+                        harga,
+                        resolusiVideo
+                        
+                );
+                
+                break;
+            
+    
             default:
 
                 System.out.println(
@@ -502,5 +525,35 @@ public class SistemPenyewaanKamera {
         System.out.println(
                 "Kamera tidak ditemukan."
         );
+    }
+    static void prosesKamera(Kamera kamera) {
+        System.out.println();
+        System.out.println("===== PROSES KAMERA =====");
+
+        System.out.println("Kode  : " + kamera.getKode());
+        System.out.println("Jenis : " + kamera.getJenis());
+
+        kamera.tampilkanInfo();
+    }
+   
+    static void simulasiKamera() {
+
+        System.out.println();
+        System.out.println("========== SIMULASI KAMERA ==========");
+
+        System.out.print("Masukkan kode kamera: ");
+        String kode = input.nextLine();
+
+        for (int i = 0; i < jumlahKamera; i++) {
+
+            if (daftarKamera[i].getKode().equalsIgnoreCase(kode)) {
+
+                prosesKamera(daftarKamera[i]);
+
+                return;
+            }
+        }
+
+        System.out.println("Kamera tidak ditemukan.");
     }
 }
